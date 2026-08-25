@@ -1,7 +1,15 @@
 package com.david.helpdesk.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
+
+@Entity
 public class Ticket {
 
+    @Id
+    @GeneratedValue
     private int id;
 
     private String title;
@@ -11,6 +19,9 @@ public class Ticket {
     private TicketStatus status;
 
     private TicketPriority priority;
+
+    @ManyToOne
+    private User user;
 
     public int getId() {
         return id;
@@ -48,8 +59,15 @@ public class Ticket {
 
     public void setPriority(TicketPriority priority) { this.priority = priority;}
 
-    public Ticket(int id, String title, String description, TicketStatus status, TicketPriority priority) {
-        this.id = id;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Ticket(String title, String description, TicketStatus status, TicketPriority priority) {
         this.title = title;
         this.description = description;
         this.status = status;

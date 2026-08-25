@@ -1,5 +1,7 @@
 package com.david.helpdesk.controller;
 
+import com.david.helpdesk.dto.TicketRequestDTO;
+import com.david.helpdesk.dto.TicketResponseDTO;
 import com.david.helpdesk.model.Ticket;
 import com.david.helpdesk.service.TicketService;
 import org.springframework.web.bind.annotation.*;
@@ -16,27 +18,27 @@ public class TicketController {
     }
 
     @GetMapping("/tickets")
-    public List<Ticket> getTickets(){
+    public List<TicketResponseDTO> getTickets(){
         return ticketService.getTickets();
     }
 
     @PostMapping("/tickets")
-    public Ticket createTicket(@RequestBody Ticket ticket){
-        return ticketService.addTicket(ticket);
+    public TicketResponseDTO addTicket(@RequestBody TicketRequestDTO request){
+        return ticketService.addTicket(request);
     }
 
     @GetMapping("/tickets/{id}")
-    public Ticket getTicketById(@PathVariable int id){
+    public TicketResponseDTO getTicketById(@PathVariable int id){
         return ticketService.getTicketById(id);
     }
 
     @PutMapping("/tickets/{id}")
-    public Ticket updateTicket(@PathVariable int id, @RequestBody Ticket ticket){
-        return ticketService.updateTicket(id,ticket);
+    public TicketResponseDTO updateTicket(@PathVariable int id, @RequestBody TicketRequestDTO request){
+        return ticketService.updateTicket(id,request);
     }
 
     @DeleteMapping("/tickets/{id}")
-    public Ticket deleteTicket(@PathVariable int id){
+    public TicketResponseDTO deleteTicket(@PathVariable int id){
         return ticketService.deleteTicket(id);
     }
 //    @GetMapping("/tickets/filter")
