@@ -76,7 +76,7 @@ public class TicketService {
     }
 
     public TicketResponseDTO getTicketById(int id){
-        Optional<Ticket> optionalTicket =  ticketRepository.findById(id);
+        Optional<Ticket> optionalTicket = ticketRepository.findById(id);
 
         if(optionalTicket.isEmpty()){
             throw new TicketNotFoundException("Ticket with id "+ id + "not found");
